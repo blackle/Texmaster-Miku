@@ -37,9 +37,7 @@ FILE *fopen(const char *pathname, const char *mode) {
 	static fopen_fun_ptr orig_fopen = NULL;
 	if (orig_fopen == NULL) orig_fopen = (fopen_fun_ptr)dlsym(RTLD_NEXT, "fopen");
 
-	if (strcmp(pathname, "Texmaster2009.ubuntu10.04.ini") == 0) {
-		return orig_fopen("Texmaster2009.ubuntu10.04.miku.ini", mode);
-	} else if (strcmp(pathname, "data/bmp/title.bmp") == 0) {
+	if (strcmp(pathname, "data/bmp/title.bmp") == 0) {
 		return fmemopen(miku_title_bmp, (size_t)miku_title_bmp_len, mode);
 	} else {
 		return orig_fopen(pathname, mode);
