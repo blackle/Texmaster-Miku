@@ -6,8 +6,11 @@ The Hatsune Miku images are fetched from safebooru using the `miku_fetcher.py` s
 
 ## Installing
 
-```
-python3 miku_fetcher.py > miku_data.h
+```sh
+# use instead of wget if my site is down for some reason:
+# python3 miku_fetcher.py > miku_data.h
+wget https://suricrasia.online/miku/miku_data.bin
+wget https://suricrasia.online/miku/miku_data.h
 make
 cp libmiku.so /path/to/texmaster
 
