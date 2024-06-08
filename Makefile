@@ -1,12 +1,12 @@
 CFLAGS ?= -Wall -Og -g
 
-libmiku.so: libmiku.c miku_title.h miku_data.h miku_data.o Makefile
-	$(CC) $(CFLAGS) -fPIC -rdynamic -shared -ldl -o $@ libmiku.c miku_data.o
+libmiku.so: libmiku.c miku_title.h miku_data_jxl.h miku_data_jxl.o Makefile
+	$(CC) $(CFLAGS) -fPIC -rdynamic -shared -ldl -o $@ libmiku.c miku_data_jxl.o
 
 miku_title.h : miku_title.bmp
 	xxd -i $< > $@
 
-miku_data.o : miku_data.bin autodetect-arch
+miku_data_jxl.o : miku_data_jxl.bin autodetect-arch
 	objcopy -I binary -O ${FORMAT} -B ${ARCH} --rename-section .data=.rodata,alloc,load,readonly,data,contents $< $@
 
 detect: detect.c
